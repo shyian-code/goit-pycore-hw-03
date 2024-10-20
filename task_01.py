@@ -19,4 +19,4 @@ def get_days_from_today(date):
         return "Wrong date format. Recomend to use next format YYYY-MM-DD."
 
 # Call the function for use case example
-print(get_days_from_today("2022-07-31"))  
+print(get_days_from_today("2024-12-31"))  
