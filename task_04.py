@@ -6,23 +6,23 @@ def get_upcoming_birthdays(users):
     upcoming_birthdays = []
 
     for user in users:
-        # Перетворення дня народження на об'єкт datetime.date
+        # Convert the birthday to a datetime.date object
         birthday = datetime.strptime(user['birthday'], '%Y.%m.%d').date()
-        # Оновлення дня народження на поточний рік
+         # Update the birthday to the current year
         birthday_this_year = birthday.replace(year=today.year)
         
-        # Якщо день народження вже минув цього року, дивимось на наступний рік
+        # If the birthday has already passed this year, look at the next year
         if birthday_this_year < today:
             birthday_this_year = birthday_this_year.replace(year=today.year + 1)
         
-        # Перевірка, чи день народження знаходиться в межах наступних 7 днів
+        # Check if the birthday falls within the next 7 days
         if today <= birthday_this_year <= end_date:
-            # Перевірка на вихідні
-            if birthday_this_year.weekday() in (5, 6):  # 5 - субота, 6 - неділя
-                # Якщо це субота або неділя, переносимо на понеділок
+            # Check for weekends
+            if birthday_this_year.weekday() in (5, 6):  # 5 - Saturday, 6 - Sunday
+                # If it's Saturday or Sunday, move it to Monday
                 birthday_this_year += timedelta(days=(7 - birthday_this_year.weekday()))
 
-            # Додаємо користувача і дату привітання до результату
+            # Add the user and congratulation date to the result
             upcoming_birthdays.append({
                 'name': user['name'],
                 'congratulation_date': birthday_this_year.strftime('%Y.%m.%d')
@@ -30,7 +30,7 @@ def get_upcoming_birthdays(users):
 
     return upcoming_birthdays
 
-# Приклад використання
+# Example of usage
 users = [
     {"name": "John Doe", "birthday": "1985.01.23"},
     {"name": "Jane Smith", "birthday": "1990.01.27"},

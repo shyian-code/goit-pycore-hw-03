@@ -16,7 +16,7 @@ def normalize_phone(phone_number: str) -> str:
 
     return phone_number
 
-# Приклад використання
+# Example of usage
 raw_numbers = [
     "067\\t123 4567",
     "(095) 234-5678\\n",
